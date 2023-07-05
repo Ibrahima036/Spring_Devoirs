@@ -1,10 +1,10 @@
 package edu.ci.GestionEtudiants.controller;
 
+import edu.ci.GestionEtudiants.Dto.EtudiantDto;
+import edu.ci.GestionEtudiants.Dto.UpdateEtudiantDto;
 import edu.ci.GestionEtudiants.entity.Etudiant;
 import edu.ci.GestionEtudiants.services.ServiceEtudiant;
-import edu.ci.GestionEtudiants.services.ServiceEtudiantImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,23 +13,30 @@ import java.util.List;
 @RequiredArgsConstructor
 
 public class EtudiantController {
-    private final ServiceEtudiantImpl serviceEtudiant;
+    private final ServiceEtudiant serviceEtudiant;
 
-    @GetMapping("/{id}")
-    public Etudiant findEtudiantById(@PathVariable long id){
+    @GetMapping("/find/{id}")
+    public Etudiant findEtudiantById(@PathVariable long id) {
         return serviceEtudiant.findEtudiantById(id);
     }
-    @GetMapping("/all")
-    public List<Etudiant> getEtudiant(){
+
+    @GetMapping("/findAll")
+    public List<Etudiant> getEtudiant() {
         return serviceEtudiant.getAllEtudiants();
     }
+
     @PostMapping("/add")
-    public Etudiant addEtudiant(@RequestBody Etudiant etudiant){
-        return serviceEtudiant.createEtudiant(etudiant);
+    public void addEtudiant(@RequestBody EtudiantDto dto) {
+        serviceEtudiant.createEtudiant(dto);
     }
-    @PutMapping
-    public Etudiant updateEtudiant(@RequestBody Etudiant etudiant){
-        return serviceEtudiant.updateEtudiant(etudiant);
+
+    @PutMapping("/update")
+    public void updateEtudiant(@RequestBody UpdateEtudiantDto dto) {
+         serviceEtudiant.updateEtudiant(dto);
+    }
+    @GetMapping("findmat/{matricule}")
+    public Etudiant findByMatricule(@PathVariable String matricule){
+        return serviceEtudiant.findByMatricule(matricule);
     }
 
 

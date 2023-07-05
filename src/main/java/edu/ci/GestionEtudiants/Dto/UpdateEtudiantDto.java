@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class EtudiantDto {
+public class UpdateEtudiantDto {
     private String firstname;
     private String lastname;
     private String matricule;
