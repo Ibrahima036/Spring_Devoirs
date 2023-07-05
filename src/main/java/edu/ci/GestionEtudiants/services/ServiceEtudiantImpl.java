@@ -21,7 +21,7 @@ public class ServiceEtudiantImpl {
     }
 
 
-    public Etudiant getEtudiant(Long id) {
+    public Etudiant findEtudiantById(Long id) {
         Optional<Etudiant> etudiant = etudiantRepository.findById(id);
         if (etudiant.isPresent()) {
             return etudiant.get();

@@ -16,8 +16,8 @@ public class EtudiantController {
     private final ServiceEtudiantImpl serviceEtudiant;
 
     @GetMapping("/{id}")
-    public Etudiant getEtudiant(@PathVariable long id){
-        return serviceEtudiant.getEtudiant(id);
+    public Etudiant findEtudiantById(@PathVariable long id){
+        return serviceEtudiant.findEtudiantById(id);
     }
     @GetMapping("/all")
     public List<Etudiant> getEtudiant(){
